@@ -1,0 +1,5 @@
+local:
+  dialect: postgres
+  datasource: postgres://postgres:postgres@localhost:5432/hse_task?sslmode=disable&TimeZone=UTC&application_name=sql-migrate
+  dir: migrations
+  table: migrations

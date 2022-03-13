@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  postgres:
+    image: library/postgres:11
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: passwd
+      POSTGRES_DB: ton_bot
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
