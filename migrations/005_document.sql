@@ -10,9 +10,9 @@ CREATE TABLE document
     car_number        text UNIQUE             NOT NULL,
     date              timestamp DEFAULT now() NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT traffic_police_id FOREIGN KEY (id) REFERENCES traffic_police ON UPDATE CASCADE ON DELETE SET NULL,
-    CONSTRAINT owner_id FOREIGN KEY (id) REFERENCES owner ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT vehicle_id FOREIGN KEY (id) REFERENCES vehicle ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT traffic_police_id FOREIGN KEY (traffic_police_id) REFERENCES traffic_police (id) ON UPDATE CASCADE ON DELETE SET NULL,
+    CONSTRAINT owner_id FOREIGN KEY (owner_id) REFERENCES owner (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT vehicle_id FOREIGN KEY (vehicle_id) REFERENCES vehicle (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- +migrate Down

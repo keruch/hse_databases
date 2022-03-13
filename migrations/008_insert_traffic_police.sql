@@ -4,15 +4,13 @@
 -- +migrate StatementBegin
 CREATE FUNCTION insert_traffic_police(
     traffic_police_address text)
-    RETURNS text AS
+    RETURNS int AS
 $$
-BEGIN
-    INSERT INTO traffic_police(address)
-    VALUES (traffic_police_address);
-    RAISE NOTICE 'Generated new traffic police with address % with id %', traffic_police_address, currval('traffic_police_seq')::TEXT;
-    RETURN currval('traffic_police_seq')::TEXT;
-END;
-$$ LANGUAGE plpgsql;
+INSERT INTO traffic_police(address)
+VALUES (traffic_police_address)
+ON CONFLICT(address) DO UPDATE SET address=excluded.address
+RETURNING id;
+$$ LANGUAGE sql;
 -- +migrate StatementEnd
 
 -- +migrate Down
