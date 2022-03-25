@@ -3,11 +3,11 @@
 
 -- +migrate StatementBegin
 CREATE FUNCTION insert_owner(
-    o_first text, o_last text, o_middle text, o_address text, o_type owner_type)
+    o_first text, o_last text, o_middle text, o_address text, o_type_id int)
     RETURNS int AS
 $$
-INSERT INTO owner(first_name, last_name, middle_name, address, owner_type)
-VALUES (o_first, o_last, o_middle, o_address, o_type)
+INSERT INTO owner(first_name, last_name, middle_name, address, owner_type_id)
+VALUES (o_first, o_last, o_middle, o_address, o_type_id)
 ON CONFLICT ON CONSTRAINT unique_user DO UPDATE SET first_name=excluded.first_name
 RETURNING id;
 $$ LANGUAGE sql;

@@ -1,9 +1,6 @@
 -- +migrate Up
 -- SQL in section 'Up' is executed when this migration is applied
 
--- CREATE TYPE owner_type AS ENUM ('physical', 'entity');
--- CREATE TYPE vehicle_model AS ENUM ('kia', 'audi', 'mercedes', 'bmw', 'gaz');
--- CREATE TYPE vehicle_type AS ENUM ('sedan', 'coupe', 'crossover', 'universal', 'bus', 'truck');
 CREATE TABLE owner_type
 (
     id   int GENERATED ALWAYS AS IDENTITY,
@@ -82,11 +79,14 @@ EXECUTE PROCEDURE change_trigger();
 
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
-DROP TABLE owner_type;
-DROP TABLE vehicle_model;
-DROP TABLE vehicle_type;
-DROP FUNCTION change_trigger;
-
 DROP TRIGGER owner_type_update ON owner_type;
 DROP TRIGGER vehicle_model_update ON vehicle_model;
 DROP TRIGGER vehicle_type_update ON vehicle_type;
+
+DROP TABLE owner_type;
+DROP TABLE vehicle_model;
+DROP TABLE vehicle_type;
+
+DROP TABLE dictionary_changes;
+
+DROP FUNCTION change_trigger;

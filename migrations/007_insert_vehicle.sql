@@ -3,11 +3,11 @@
 
 -- +migrate StatementBegin
 CREATE FUNCTION insert_vehicle(
-    vehicle_color text, vehicle_model vehicle_model, vehicle_type vehicle_type)
+    vehicle_color text, vehicle_model_id int, vehicle_type_id int)
     RETURNS int AS
 $$
-INSERT INTO vehicle(color, type, model)
-VALUES (vehicle_color, vehicle_type, vehicle_model)
+INSERT INTO vehicle(color, type_id, model_id)
+VALUES (vehicle_color, vehicle_type_id, vehicle_model_id)
 RETURNING id;
 $$ LANGUAGE sql;
 -- +migrate StatementEnd
